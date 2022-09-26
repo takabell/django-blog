@@ -20,6 +20,7 @@ class PostListView(View):
         """
         context = {}
         #  記事データを取得
+        #'-published_date'は「-」は降順の意味
         posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
         context['posts'] = posts
         return render(request, "blog/post_list.html", context)
