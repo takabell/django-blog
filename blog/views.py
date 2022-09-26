@@ -8,7 +8,7 @@
 
 """
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import View,DetailView
 from django.utils import timezone
 from .models import Post
 
@@ -25,3 +25,9 @@ class PostListView(View):
         return render(request, "blog/post_list.html", context)
 
 post_list = PostListView.as_view()
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = "blog/post_detail.html"
+
+post_detail = PostDetailView.as_view()
