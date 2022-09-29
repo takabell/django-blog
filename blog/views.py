@@ -3,7 +3,7 @@
     表示用の機能作成
 
     Filename   views.py
-    Date: 2020.1.13
+    Date: 2022.9.27
     Written by Shinsuke Kobayashi
 
 """
