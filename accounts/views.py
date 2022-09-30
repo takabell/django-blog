@@ -8,10 +8,11 @@
 """
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, CreateView
 from django.shortcuts import resolve_url
-from .forms import UserUpdateForm
+from .forms import UserUpdateForm, UserCreateForm
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 
 #UserPassesTestMixin　ユーザがある条件をパスしているかをテストための機能
 #同じ処理を２つのビューで追加するために作成
@@ -35,7 +36,7 @@ class UserDetail(OnlyYouMixin, DetailView):
 	template_name = 'accounts/user_detail.html'
 
 
-#CreateViewは新しいオブジェクトを作成する。
+
 #UpdateViewは既存のオブジェクトを変更する
 class UserUpdate(OnlyYouMixin, UpdateView):
 	"""
@@ -50,3 +51,12 @@ class UserUpdate(OnlyYouMixin, UpdateView):
 			更新成功後の表示をする画面。ユーザの詳細を表示する画面に遷移する。
 		"""
 		return resolve_url('accounts:user_detail', pk=self.kwargs['pk'])
+
+#CreateViewは新しいオブジェクトを作成する。
+class UserCreate(CreateView):
+	"""
+		ユーザー作成用のビュー
+	"""
+	template_name = "registration/user_create.html"
+	form_class = UserCreateForm
+	success_url = reverse_lazy('login')

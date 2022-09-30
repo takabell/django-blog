@@ -18,4 +18,5 @@ urlpatterns = [
 	#PasswordChangeViewとPasswordChangeDoneViewはDjangoのアカウント機能にあるやつ
 	path('password_change/', views.PasswordChangeView.as_view(), name='password_change'),
 	path('password_change/done/', views.PasswordChangeDoneView.as_view(), name=('password_change_done')),
+	path('create/',views.UserCreate.as_view(), name='user_create'),
 ]
