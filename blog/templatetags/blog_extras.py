@@ -26,7 +26,7 @@ def get_return_link(request):
 		if request.get_host() == parse_result.netloc:
 			return referer
 	# なければトップページ
-	return top_pages
+	return top_page
 
 @register.simple_tag
 def url_replace(request, field, value):

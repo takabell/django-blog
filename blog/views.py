@@ -15,6 +15,7 @@ from .forms import PostForm, PostSearchForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from .mixins import CheckPermissionMixin
 
 class PostListView(ListView):
 	"""
@@ -55,7 +56,7 @@ class PostListView(ListView):
 
 post_list = PostListView.as_view()
 
-class PostDetailView(DetailView):
+class PostDetailView(CheckPermissionMixin,DetailView):
 	model = Post
 	template_name = "blog/post_detail.html"
 
